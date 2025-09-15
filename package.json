@@ -1,0 +1,16 @@
+{
+  "name": "personal-website",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run develop",
+    "build": "cd frontend && npm run build",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install",
+    "rebuild": "cd backend && npm rebuild",
+    "setup": "npm run install:all && npm run rebuild"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
