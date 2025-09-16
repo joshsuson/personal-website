@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page"
+  },
+  "options": {
+    "comment": ""
+  },
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "aboutBlurb": {
+      "type": "text"
+    },
+    "gallery": {
+      "type": "media",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "multiple": true
+    }
+  }
+}
