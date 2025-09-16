@@ -54,8 +54,10 @@ npm run upgrade      # Upgrade to latest Strapi version
 - **`admin.ts`** - Admin panel authentication and security settings
 
 ### Content Types (`/src/api/`)
-- **Currently empty** - Ready for new content type creation
-- Content types will be created via Strapi CLI or admin panel
+- **`home-page/`** - Single type content with heading, aboutBlurb, and gallery fields
+  - Uses TypeScript-compatible field names (camelCase)
+  - API available at `/api/home-page`
+  - Supports multiple media uploads in gallery field
 
 ### Application Bootstrap (`/src/`)
 - **`index.ts`** - Application lifecycle hooks (register/bootstrap)
@@ -107,7 +109,8 @@ DATABASE_PASSWORD=strapi         # Database password
 
 ### API Endpoints
 - **Base URL**: http://localhost:1337/api
-- **Content Types**: Will appear here after creation (e.g., `/api/[content-type-name]`)
+- **Home Page**: GET `/api/home-page` (single type)
+- **With Population**: GET `/api/home-page?populate=*` (includes gallery media)
 - **Authentication**: Use API tokens for programmatic access
 
 ## Development Workflows
@@ -128,8 +131,12 @@ DATABASE_PASSWORD=strapi         # Database password
 
 3. **Restart backend** to register new content types
 4. **Check `/types/generated/contentTypes.d.ts`** for auto-generated types
+5. **Generate TypeScript types** with `npm run strapi -- ts:generate-types`
 
-**Note**: Content types are automatically generated as code files in `/src/api/[content-type]/` but should be created through CLI or admin panel, not by manually editing files.
+**Important Notes**:
+- Content types are automatically generated as code files in `/src/api/[content-type]/` but should be created through CLI or admin panel, not by manually editing files
+- **Field Names**: Use camelCase or underscores, avoid hyphens (e.g., `aboutBlurb` not `about-blurb`) for TypeScript compatibility
+- Always regenerate types after creating or modifying content types
 
 ### Database Schema Changes
 - **Development**: Changes via admin panel auto-migrate
@@ -141,14 +148,14 @@ DATABASE_PASSWORD=strapi         # Database password
 # List all content types
 npm run strapi -- content-types:list
 
-# Test single type endpoint (when created)
-curl http://localhost:1337/api/[single-type-name]
+# Test home page endpoint
+curl http://localhost:1337/api/home-page
 
-# With populate query
-curl "http://localhost:1337/api/[content-type]?populate=*"
+# With populated gallery
+curl "http://localhost:1337/api/home-page?populate=*"
 
-# Collection type with pagination (when created)
-curl "http://localhost:1337/api/[collection-name]?pagination[limit]=10"
+# With authentication (if required)
+curl -H "Authorization: Bearer YOUR_API_KEY" "http://localhost:1337/api/home-page?populate=*"
 ```
 
 ### Switching Database Providers

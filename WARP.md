@@ -6,9 +6,9 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 This is a personal website project built with a **monorepo structure** containing:
 
-- **Frontend**: Astro v5.13.7 static site generator with TypeScript
+- **Frontend**: Astro v5.13.7 static site generator with TypeScript and Layout components
 - **Backend**: Strapi v5.23.4 headless CMS with SQLite database
-- **Current State**: Frontend uses dummy data, Strapi integration pending
+- **Current State**: Fully integrated - frontend consumes Strapi API for home page content
 
 The project follows a decoupled architecture where Strapi serves as a headless CMS providing RESTful APIs for the Astro frontend to consume.
 
@@ -48,25 +48,31 @@ cd backend && npm run strapi     # Access Strapi CLI directly
 ## Project Structure & Key Files
 
 ### Frontend (`/frontend/`)
-- **Pages**: `src/pages/` - File-based routing, currently only `index.astro`
+- **Pages**: `src/pages/` - File-based routing with `index.astro` home page
+- **Layouts**: `src/layouts/Layout.astro` - Reusable layout component with shared HTML/CSS
+- **API Utils**: `src/lib/strapi.js` - Centralized Strapi API calls
 - **Config**: `astro.config.mjs` - Minimal Astro configuration
-- **Current Data**: Hardcoded in `src/pages/index.astro` as `dummyData`
+- **Environment**: `.env` - Contains STRAPI_URL and STRAPI_API_KEY
 
 ### Backend (`/backend/`)
 - **Config**: `/config/` - Database, server, plugins, and middleware configurations
-- **Content Types**: `/src/api/` - Currently empty, ready for content type definitions
-- **Database**: Uses SQLite by default, configurable via environment variables
+- **Content Types**: `/src/api/home-page/` - Home page single type with heading, aboutBlurb, and gallery fields
+- **Database**: Uses SQLite (`.tmp/data.db`) by default, configurable via environment variables
+- **Generated Types**: `/types/generated/contentTypes.d.ts` - Auto-generated TypeScript definitions
 
 ### Integration Points
-The main architectural goal is connecting the Astro frontend to consume Strapi's RESTful API instead of using hardcoded dummy data.
+The Astro frontend now successfully consumes Strapi's RESTful API for dynamic content:
+- **Home page** fetches data from `/api/home-page` endpoint
+- **API authentication** using Bearer tokens (STRAPI_API_KEY)
+- **Error handling** for API failures with fallback content
 
 ## Key Technical Details
 
 - **Node.js Requirements**: Frontend requires 22.x, Backend supports 18.x-22.x
 - **TypeScript**: Both projects use TypeScript for type safety
 - **Database Default**: SQLite (file-based), production-ready for PostgreSQL/MySQL
-- **Content Types**: None defined yet - needs content types for skills, projects, bio, etc.
-- **API Integration**: Frontend not yet consuming Strapi APIs
+- **Content Types**: Home page single type implemented with heading, aboutBlurb, and gallery fields
+- **API Integration**: Frontend successfully consumes Strapi APIs with authentication
 
 ## Common Development Tasks
 
@@ -75,11 +81,32 @@ The main architectural goal is connecting the Astro frontend to consume Strapi's
 2. Define schema in `content-types/[name]/schema.json`
 3. Restart backend to register new content types
 
-### Connecting Astro to Strapi
-1. Add fetch calls in Astro pages/components
-2. Replace `dummyData` with API calls to `http://localhost:1337/api/`
-3. Handle loading states and error cases
-4. Consider environment variables for API base URL
+### Frontend Architecture Patterns
+1. **Layout Component**: `src/layouts/Layout.astro` provides reusable HTML structure and global CSS
+2. **API Utilities**: `src/lib/strapi.js` centralizes API calls with authentication
+3. **Environment Variables**: `.env` file for STRAPI_URL and STRAPI_API_KEY configuration
+4. **Error Handling**: Graceful fallback for API failures in page components
+
+### Environment Setup
+Both frontend and backend require environment configuration:
+
+**Frontend** (`.env`):
+```bash
+STRAPI_URL=http://localhost:1337
+STRAPI_API_KEY=your_api_key_here
+```
+
+**Backend** (`.env`):
+```bash
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS="key1,key2"
+API_TOKEN_SALT=random_string
+ADMIN_JWT_SECRET=random_string
+TRANSFER_TOKEN_SALT=random_string
+JWT_SECRET=random_string
+ENCRYPTION_KEY=32_char_key
+```
 
 ### Database Configuration
 Environment variables in `/backend/.env`:
@@ -91,3 +118,9 @@ Environment variables in `/backend/.env`:
 - **Frontend**: Navigate to http://localhost:4321 after `npm run dev:frontend`
 - **Backend API**: Test endpoints with curl or Postman at http://localhost:1337/api/
 - **Strapi Admin**: Access content management at http://localhost:1337/admin
+
+### Testing the Integrated System
+1. **Start both servers**: `npm run dev` (runs both frontend and backend)
+2. **Add content**: Go to http://localhost:1337/admin and populate the Home Page content
+3. **View result**: Navigate to http://localhost:4321 to see dynamic content
+4. **Test API directly**: `curl "http://localhost:1337/api/home-page?populate=*"`
