@@ -136,6 +136,11 @@
 .text-charcoal { color: var(--charcoal); }
 .text-white { color: var(--pure-white); }
 .text-cream { color: var(--soft-cream); }
+.text-electric-blue { color: var(--electric-blue); }
+
+/* Hover states */
+.hover\:text-electric-blue:hover { color: var(--electric-blue); }
+.hover\:text-charcoal:hover { color: var(--charcoal); }
 
 .floating-shape {
   position: absolute;

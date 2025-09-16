@@ -1,0 +1,44 @@
+---
+import { clsx } from 'clsx';
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+  <div class="flex justify-center sm:px-8">
+    <div class="flex w-full max-w-7xl lg:px-8">
+      <div class="w-full">
+        <div class="px-4 sm:px-8 lg:px-12 py-8">
+          <div class="mx-auto max-w-2xl lg:max-w-5xl">
+            <nav class="flex justify-between items-center">
+              <a href="/" class="text-headline text-4xl font-bold text-charcoal hover:text-electric-blue transition-colors">
+                Josh Suson
+              </a>
+              
+              <div class="flex gap-8">
+                <a 
+                  href="/" 
+                  class={clsx(
+                    'text-body text-xl font-semibold transition-colors hover:text-electric-blue',
+                    currentPath === '/' ? 'text-electric-blue' : 'text-charcoal'
+                  )}
+                >
+                  Home
+                </a>
+                <a 
+                  href="/about" 
+                  class={clsx(
+                    'text-body text-xl font-semibold transition-colors hover:text-electric-blue',
+                    currentPath === '/about' ? 'text-electric-blue' : 'text-charcoal'
+                  )}
+                >
+                  About
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="border-b-4 border-charcoal"></div>
+      </div>
+    </div>
+  </div>
+</header>
