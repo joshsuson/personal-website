@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/Container.astro';
+---
+
+<Layout title="About - Josh Suson">
+	<!-- Hero Section -->
+	<Container class="section-padding">
+		<div class="text-center mb-16">
+			<h1 class="text-display text-6xl md:text-7xl lg:text-8xl text-charcoal mb-6">
+				About Me
+			</h1>
+			<p class="text-body text-xl text-charcoal leading-relaxed max-w-3xl mx-auto">
+				I'm passionate about creating digital experiences that make a real difference in people's lives.
+			</p>
+		</div>
+	</Container>
+
+	<!-- Main Content -->
+	<Container class="section-padding">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+			<!-- Bio Section -->
+			<div>
+				<h2 class="text-headline text-3xl text-charcoal mb-6">My Story</h2>
+				<div class="space-y-4">
+					<p class="text-body text-charcoal leading-relaxed">
+						With over 8 years of experience in web development, I've had the privilege of working with 
+						amazing teams and building products that serve thousands of users. My journey started with 
+						a simple curiosity about how websites work, and it's evolved into a deep passion for 
+						creating meaningful digital experiences.
+					</p>
+					<p class="text-body text-charcoal leading-relaxed">
+						I believe in the power of clean code, thoughtful design, and user-centered development. 
+						Every project is an opportunity to solve real problems and make someone's day a little 
+						bit better through technology.
+					</p>
+					<p class="text-body text-charcoal leading-relaxed">
+						When I'm not coding, you'll find me spending time with my family, exploring the outdoors, 
+						or diving into the latest web development trends and technologies.
+					</p>
+				</div>
+			</div>
+
+			<!-- Skills & Interests -->
+			<div>
+				<h2 class="text-headline text-3xl text-charcoal mb-6">What I Work With</h2>
+				<div class="space-y-6">
+					<!-- Frontend -->
+					<div class="vibrant-card">
+						<h3 class="text-headline text-xl text-charcoal mb-3">Frontend Development</h3>
+						<p class="text-body text-charcoal mb-3">
+							Creating responsive, accessible user interfaces with modern frameworks and tools.
+						</p>
+						<div class="flex flex-wrap gap-2">
+							<span class="bg-electric-blue text-white px-3 py-1 rounded-lg text-sm">React</span>
+							<span class="bg-vibrant-purple text-white px-3 py-1 rounded-lg text-sm">Next.js</span>
+							<span class="bg-lime-green text-charcoal px-3 py-1 rounded-lg text-sm">Astro</span>
+							<span class="bg-sunset-orange text-white px-3 py-1 rounded-lg text-sm">TypeScript</span>
+							<span class="bg-coral-pink text-white px-3 py-1 rounded-lg text-sm">Tailwind CSS</span>
+						</div>
+					</div>
+
+					<!-- Backend -->
+					<div class="vibrant-card">
+						<h3 class="text-headline text-xl text-charcoal mb-3">Backend & Tools</h3>
+						<p class="text-body text-charcoal mb-3">
+							Building scalable server-side solutions and working with modern development tools.
+						</p>
+						<div class="flex flex-wrap gap-2">
+							<span class="bg-charcoal text-white px-3 py-1 rounded-lg text-sm">Node.js</span>
+							<span class="bg-electric-blue text-white px-3 py-1 rounded-lg text-sm">Strapi</span>
+							<span class="bg-vibrant-purple text-white px-3 py-1 rounded-lg text-sm">PostgreSQL</span>
+							<span class="bg-lime-green text-charcoal px-3 py-1 rounded-lg text-sm">Git</span>
+							<span class="bg-sunset-orange text-white px-3 py-1 rounded-lg text-sm">Docker</span>
+						</div>
+					</div>
+
+					<!-- Interests -->
+					<div class="vibrant-card">
+						<h3 class="text-headline text-xl text-charcoal mb-3">Beyond Code</h3>
+						<p class="text-body text-charcoal">
+							Family time, hiking, photography, and always learning something new in the 
+							ever-evolving world of web technology.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Container>
+
+	<!-- Contact CTA -->
+	<Container class="section-padding">
+		<div class="text-center">
+			<div class="vibrant-card max-w-2xl mx-auto">
+				<h2 class="text-headline text-3xl text-charcoal mb-4">Let's Work Together</h2>
+				<p class="text-body text-charcoal mb-6">
+					I'm always interested in hearing about new projects and opportunities. 
+					Whether you have a question or just want to say hi, feel free to reach out!
+				</p>
+				<a href="mailto:hello@joshdoesdev.com" class="vibrant-button vibrant-button--primary">
+					Get in Touch
+				</a>
+			</div>
+		</div>
+	</Container>
+</Layout>
