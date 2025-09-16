@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Container from '../components/Container.astro';
 import { fetchHomePage } from '../lib/strapi';
 
 let homePage = null;
@@ -11,46 +13,37 @@ try {
   error = e.message;
 }
 
-const strapiUrl = import.meta.env.STRAPI_URL || 'http://localhost:1337';
 const pageTitle = homePage ? homePage.heading : 'Personal Website';
 ---
 
 <Layout title={pageTitle}>
 	{error ? (
-		<div class="error">
-			<h1>Error loading content</h1>
-			<p>{error}</p>
-		</div>
+		<Container class="text-center py-16 min-h-screen flex flex-col justify-center items-center">
+			<h1 class="text-4xl mb-4 text-gray-800">Error loading content</h1>
+			<p class="text-gray-600 text-lg">{error}</p>
+		</Container>
 	) : homePage ? (
-		<div class="container">
-			<header class="hero">
-				<h1>{homePage.heading}</h1>
-				<p class="about">{homePage.aboutBlurb}</p>
-			</header>
+		<>
+			<Container class="mt-9">
+				<header class="text-center py-16 mb-12">
+					<h1 class="text-6xl md:text-7xl mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent font-bold">{homePage.heading}</h1>
+					<p class="text-xl text-gray-600 leading-relaxed">{homePage.aboutBlurb}</p>
+				</header>
+			</Container>
 
 			{homePage.gallery && homePage.gallery.length > 0 && (
-				<section class="gallery">
-					<div class="gallery-grid">
-						{homePage.gallery.map((image) => (
-							<div class="gallery-item">
-								<img 
-									src={`${strapiUrl}${image.url}`} 
-									alt={image.alternativeText || "Gallery image"}
-									loading="lazy"
-								/>
-							</div>
-						))}
-				</div>
-			</section>
+				<Gallery images={homePage.gallery} />
 			)}
 
-			<footer>
-				<p>Built with <strong>Astro</strong> ⚡ and <strong>Strapi</strong> 🚀</p>
-			</footer>
-		</div>
+			<Container class="mt-24">
+				<footer class="text-center py-8 text-gray-600 text-lg">
+					<p>Built with <strong class="text-gray-800">Astro</strong> ⚡ and <strong class="text-gray-800">Strapi</strong> 🚀</p>
+				</footer>
+			</Container>
+		</>
 	) : (
-		<div class="loading">
-			<h1>Loading...</h1>
-		</div>
+		<Container class="text-center py-16 min-h-screen flex flex-col justify-center items-center">
+			<h1 class="text-4xl mb-4 text-gray-800">Loading...</h1>
+		</Container>
 	)}
 </Layout>
