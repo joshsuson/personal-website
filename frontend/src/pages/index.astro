@@ -24,20 +24,29 @@ const pageTitle = homePage ? homePage.heading : 'Personal Website';
 		</Container>
 	) : homePage ? (
 		<>
-			<Container class="mt-9">
-				<header class="text-center py-16 mb-12">
-					<h1 class="text-6xl md:text-7xl mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent font-bold">{homePage.heading}</h1>
-					<p class="text-xl text-gray-600 leading-relaxed">{homePage.aboutBlurb}</p>
-				</header>
+			<!-- Hero Section -->
+			<Container class="section-padding">
+				<div class="text-center">
+					<h1 class="text-display text-6xl md:text-7xl lg:text-8xl text-charcoal mb-6">
+						{homePage.heading}
+					</h1>
+					<p class="text-body text-xl text-charcoal leading-relaxed">
+						{homePage.aboutBlurb}
+					</p>
+				</div>
 			</Container>
 
 			{homePage.gallery && homePage.gallery.length > 0 && (
 				<Gallery images={homePage.gallery} />
 			)}
 
-			<Container class="mt-24">
-				<footer class="text-center py-8 text-gray-600 text-lg">
-					<p>Built with <strong class="text-gray-800">Astro</strong> ⚡ and <strong class="text-gray-800">Strapi</strong> 🚀</p>
+			<Container class="section-padding">
+				<footer class="text-center">
+					<div class="vibrant-card inline-block">
+						<p class="text-body text-charcoal">
+							Built with <strong class="text-headline">Astro</strong> ⚡ and <strong class="text-headline">Strapi</strong> 🚀
+						</p>
+					</div>
 				</footer>
 			</Container>
 		</>

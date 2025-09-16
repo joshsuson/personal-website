@@ -1,6 +1,6 @@
-# Personal Website Frontend - Layout System
+# Personal Website Frontend - Vibrant Design System
 
-This Astro frontend uses a sophisticated layout system inspired by the spotlight-ts project, creating dynamic visual effects through strategic container usage.
+This Astro frontend uses a vibrant, modern design system inspired by contemporary web design trends, featuring bold colors, geometric shapes, and dynamic layouts with strategic container usage for breakout effects.
 
 ## Core Layout Architecture
 
@@ -92,6 +92,31 @@ The Gallery component (`src/components/Gallery.astro`) creates the dynamic break
 3. **Responsive Design**: System works across all screen sizes
 4. **Spotlight-ts Compatibility**: Direct translation of the reference implementation
 
-## Background Styling
+## Vibrant Design System
 
-The layout uses a purple gradient background (`bg-gradient-to-br from-indigo-500 to-purple-600`) that's visible when content breaks out of the white visual column, creating the desired dynamic effect.
+### Color Palette
+- **Electric Yellow** (`#EFFF00`) - Primary brand color
+- **Coral Pink** (`#FF6B6B`) - Accent color
+- **Vibrant Purple** (`#B794F6`) - Secondary accent
+- **Lime Green** (`#68D391`) - Success/positive actions
+- **Electric Blue** (`#63B3ED`) - Information/links
+- **Sunset Orange** (`#F6AD55`) - Warning/attention
+- **Pure White** (`#FFFFFF`) - Primary background
+- **Soft Cream** (`#FFFEF7`) - Secondary background
+- **Charcoal** (`#2D3748`) - Primary text
+
+### Typography System
+- **Display Text**: Bold headlines, 800 weight, tight line-height
+- **Headline Text**: Section headers, 700 weight
+- **Body Text**: Regular content, 400 weight, relaxed line-height
+- **Caption Text**: Small text, 500 weight
+
+### Component System
+- **Vibrant Cards**: White background with thick charcoal borders
+- **Vibrant Buttons**: High-contrast with hover animations
+- **Floating Shapes**: Decorative geometric elements
+- **Split Layouts**: Two-column responsive layouts
+
+### Background Styling
+
+The layout uses an electric yellow background with a soft cream visual column, creating bold contrast when content breaks out of the container boundaries.
