@@ -9,6 +9,16 @@ export interface Props {
 const { images } = Astro.props;
 const strapiUrl = import.meta.env.STRAPI_URL || 'http://localhost:1337';
 
+// Helper function to get the correct image URL
+function getImageUrl(imageUrl: string) {
+	// If the URL already starts with http/https, it's a full URL (production)
+	if (imageUrl.startsWith('http')) {
+		return imageUrl;
+	}
+	// Otherwise, it's a relative URL (local development)
+	return `${strapiUrl}${imageUrl}`;
+}
+
 const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
 ---
 
@@ -20,7 +30,7 @@ const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 				style="padding: 12px;"
 			>
 				<img
-					src={`${strapiUrl}${image.url}`}
+					src={getImageUrl(image.url)}
 					alt={image.alternativeText || "Gallery image"}
 					loading="lazy"
 					class="w-full h-full object-cover rounded-lg"
