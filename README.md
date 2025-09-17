@@ -37,7 +37,7 @@ personal-website/
 1. Clone the repository and navigate to the project directory
 2. Install dependencies for both frontend and backend:
    ```bash
-   npm run install:all
+   npm run setup
    ```
 
 ### Development
@@ -96,19 +96,28 @@ Create your first admin user when prompted.
 
 ## Deployment
 
-### Frontend (Astro)
-The frontend can be deployed to:
-- Vercel
-- Netlify
-- GitHub Pages
-- Any static hosting provider
+This project uses **automatic deployment** from the monorepo:
 
-### Backend (Strapi)
-The backend can be deployed to:
-- Railway
-- Heroku
-- DigitalOcean
-- Any Node.js hosting provider
+### Frontend (Vercel)
+- **Repository**: https://github.com/joshsuson/personal-website
+- **Framework**: Astro
+- **Root Directory**: `frontend/`
+- **Auto-deploys** when pushing to `main` branch
+- **Environment Variables** (set in Vercel dashboard):
+  - `STRAPI_URL`: Your Strapi Cloud URL (e.g., `https://your-app.strapiapp.com`)
+  - `STRAPI_API_KEY`: Strapi API token for frontend access
+
+### Backend (Strapi Cloud)
+- **Repository**: https://github.com/joshsuson/personal-website
+- **Root Directory**: `backend/`
+- **Auto-deploys** when pushing to `main` branch
+- **Environment Variables**: Configure in Strapi Cloud dashboard using `.env.example` as reference
+
+### Deployment Workflow
+1. Push changes to `main` branch: `git push origin main`
+2. Frontend automatically deploys to Vercel
+3. Backend automatically deploys to Strapi Cloud
+4. Both services are live with latest changes
 
 ## Development Notes
 
